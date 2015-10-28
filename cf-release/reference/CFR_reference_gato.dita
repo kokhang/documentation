@@ -32,7 +32,8 @@
       <dl>
         <dlentry>
           <dt><filepath>api</filepath></dt>
-          <dd>Set  a <keyword keyref="prodShort"/> config store.</dd>
+          <dd>Set a <keyword keyref="prodShort"/> config store, for
+            example:<codeblock>$ gato api http://hcf-consul-server.hcf:8501</codeblock></dd>
         </dlentry>
         <dlentry>
           <dt><filepath>config</filepath></dt>
