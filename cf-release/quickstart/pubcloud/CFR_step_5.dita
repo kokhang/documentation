@@ -41,7 +41,15 @@ cf target -o <varname>&lt;organization></varname></codeblock></li>
             <li>Create a space, attach it to your organization, and target
               it:<codeblock>cf create-space <varname>&lt;space></varname> -o <varname>&lt;organization></varname>
 cf target -o <varname>&lt;organization></varname> -s <varname>&lt;space></varname></codeblock></li>
-          </ol><b>Pushing a GitHub Application to Your Cluster</b><ol id="ol_idl_1mw_tt">
+          </ol><note type="tip">To save time, you can add all of the commands to a batch file or
+            shell script, for
+            example:<codeblock>cf api http://api.203.0.113.0.xip.io --skip-ssl-validation
+cf login
+cf create-org myOrg
+cf target -o myOrg
+cf create-space mySpace -o myOrg
+cf target -o myOrg -s mySpace</codeblock></note><b>Pushing
+            a GitHub Application to Your Cluster</b><ol id="ol_idl_1mw_tt">
             <li>Navigate to the GitHub page of the application and click <uicontrol>Download
                 ZIP</uicontrol>.</li>
             <li>Decompress the <filepath>zip</filepath> file into a convenient directory.</li>
