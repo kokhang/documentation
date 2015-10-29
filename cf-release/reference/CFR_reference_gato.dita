@@ -70,7 +70,8 @@
           <dd>Retrieve the status of a <keyword keyref="prodShort"/> cluster.<dl>
               <dlentry>
                 <dt><filepath>--all</filepath>, <filepath>-a</filepath></dt>
-                <dd>Show each individual process.</dd>
+                <dd>Show each individual process, for
+                  example:<codeblock>$ gato status --all</codeblock></dd>
               </dlentry>
             </dl></dd>
         </dlentry>
