@@ -4,12 +4,12 @@
     <!-- Modification History
  -->
     <booktitle>
-        <mainbooktitle>HP Helion OpenStack Carrier Grade  2.0 Beta: Administration
+        <mainbooktitle>HPE Helion OpenStack Carrier Grade  2.0 Beta: Administration
             Guide</mainbooktitle>
     </booktitle>
     <bookmeta>
         <prodinfo>
-            <prodname>HP Helion OpenStack Carrier Grade</prodname>
+            <prodname>HPE Helion OpenStack Carrier Grade</prodname>
             <vrmlist>
                 <vrm release="15.x" version=""/>
             </vrmlist>
@@ -29,7 +29,7 @@
         </booklists></frontmatter>
     <chapter href="jow1404333560080.xml">
         <topicmeta>
-            <navtitle>HP Helion OpenStack Carrier Grade Overview</navtitle>
+            <navtitle>HPE Helion OpenStack Carrier Grade Overview</navtitle>
         </topicmeta>
         <topicref href="jow1404333563170.xml"/>
         <topicref href="jow1404333563834.xml"/>
