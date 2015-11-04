@@ -54,7 +54,8 @@
           <dt><filepath>role</filepath></dt>
           <dd>Manage node roles. By default, uses the <codeph>$DOCKER_HOST</codeph> environment
             variable to determine the docker server endpoint. Use the <filepath>--node</filepath>
-            flag to stop a <varname>&lt;role></varname> container on a specific node.<ul
+            flag to stop <xref href="#reference_cd3_bs3_rt/available_role_containers" format="dita"
+              >a <varname>&lt;role></varname> container</xref> on a specific node.<ul
               id="ul_blk_nhj_rt">
               <li><xref href="#reference_cd3_bs3_rt/role_start" format="dita"><filepath>role
                     start</filepath></xref></li>
@@ -157,14 +158,14 @@
         </dlentry>
       </dl>
     </section>
-    <section>
-      <title id="available_role_containers">Available <varname>&lt;role></varname>
+    <section id="available_role_containers">
+      <title>Available <varname>&lt;role></varname>
         Containers</title>
     </section>
     <table frame="all" rowsep="1" colsep="1" id="table_cls_wfz_wt">
       <tgroup cols="2">
-        <colspec colname="c1" colnum="1" colwidth="1.0*"/>
-        <colspec colname="c2" colnum="2" colwidth="1.0*"/>
+        <colspec colname="c1" colnum="1" colwidth="1*"/>
+        <colspec colname="c2" colnum="2" colwidth="2.56*"/>
         <thead>
           <row>
             <entry><varname>&lt;role></varname> Container</entry>
