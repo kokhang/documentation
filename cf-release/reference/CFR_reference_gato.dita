@@ -86,15 +86,15 @@
           <dt><filepath><keyword keyref="adminUtilCLI"/> config get <varname>[command
                 options]</varname>
               <varname>[arguments...]</varname></filepath></dt>
-          <dd>Look up the current and default values of a configuration, for example: <codeblock>$ <keyword keyref="adminUtilCLI"/> config get nats/user</codeblock><codeblock>$ <keyword keyref="adminUtilCLI"/> config get nats/password</codeblock><codeblock>$ <keyword keyref="adminUtilCLI"/> config get nats/machines</codeblock><dl>
+          <dd>Look up the current and default values of a configuration, for example: <codeblock>$ <keyword keyref="adminUtilCLI"/> config get nats/user</codeblock><codeblock>$ <keyword keyref="adminUtilCLI"/> config get nats/password</codeblock><codeblock>$ <keyword keyref="adminUtilCLI"/> config get nats/machines</codeblock><codeblock>$ <keyword keyref="adminUtilCLI"/> config get system_domain</codeblock><dl>
               <dlentry>
                 <dt><filepath>--quiet</filepath>, <filepath>-q</filepath></dt>
                 <dd>Output only the config values.</dd>
               </dlentry>
               <dlentry>
                 <dt><filepath>--role</filepath>, <filepath>-r</filepath></dt>
-                <dd>Get <xref href="#available_role_containers" format="dita">a
-                    specific role's</xref> config variable, for example:
+                <dd>Get <xref href="#available_role_containers" format="dita">a specific
+                    role's</xref> config variable, for example:
                   <codeblock>$ <keyword keyref="adminUtilCLI"/> config get --role uaa uaa/jwt/signing_key</codeblock><codeblock>$ <keyword keyref="adminUtilCLI"/> config get --role hm9000 hm9000/url</codeblock></dd>
               </dlentry>
             </dl></dd>
@@ -177,90 +177,95 @@
         </thead>
         <tbody>
           <row>
-            <entry>uaa<draft-comment author="michaelk">uaa</draft-comment></entry>
-            <entry>The UAA is the identity management service for Cloud Foundry. It's primary role
-              is as an OAuth2 provider, issuing tokens for client applications to use when they act
-              on behalf of Cloud Foundry users. It can also authenticate users with their Cloud
-              Foundry credentials, and can act as an SSO service using those credentials (or
-              others). It has endpoints for managing user accounts and for registering OAuth2
-              clients, as well as various other management functions.</entry>
+            <entry>uaa</entry>
+            <entry>User Account and Authentication (UAA) is the identity management service for
+              Cloud Foundry. Its primary role is acting as an OAuth2 provider, issuing tokens for
+              client applications when they act on behalf of Cloud Foundry users. UAA can also
+              authenticate users with their Cloud Foundry credentials, and it can act as an SSO
+              service using Cloud Foundry (or other) credentials. UAA has endpoints for managing
+              user accounts and for registering OAuth2 clients and other management
+              functions.</entry>
           </row>
           <row>
             <entry>stats<draft-comment author="michaelk">collector</draft-comment></entry>
-            <entry>The collector will discover the various components on the message bus and query
-              their `/healthz` and `/varz` interfaces. The metric data collected is published to
-              collector plugins such as OpenTSDB, AWS CloudWatch and DataDog.</entry>
+            <entry>The stats collector discovers the various components on the message bus and
+              queries their <codeph>/healthz</codeph> and <codeph>/varz</codeph> interfaces. The
+              collected metric data is published to collector plugins such as OpenTSDB, AWS
+              CloudWatch, and DataDog.</entry>
           </row>
           <row>
             <entry>runner<draft-comment author="michaelk">dea_next</draft-comment></entry>
-            <entry>The DEA is responsible for running customer applications and maintaining
-              associated routes as live. It also periodically advertises its capacity to the Cloud
-              Controllers and accepts requests to start and stop applications.</entry>
+            <entry>The Droplet Execution Agent (DEA) is responsible for running customer
+              applications and maintaining associated routes as live. It also periodically
+              advertises its capacity to Cloud Controllers and accepts requests to start and stop
+              applications.</entry>
           </row>
           <row>
             <entry>router<draft-comment author="michaelk">gorouter</draft-comment></entry>
-            <entry>The Router maintains a list of live routes for the applications running on each
-              DEA. The Router load balances requests (based on their Host header) between each
-              application instance registered for a specific route. It requires to be behind a load
+            <entry>The router maintains a list of live routes for the applications running on each
+              DEA. The router load-balances requests (based on their host header) between each
+              application instance registered for a specific route. It must be behind a load
               balancer that can terminate SSL connections.</entry>
           </row>
           <row>
-            <entry>postgres<draft-comment author="michaelk">postgres</draft-comment></entry>
+            <entry>postgres</entry>
             <entry>The Postgres server provides a single instance Postgres database that can be used
-              with the Cloud Controller or the UAA. It does not provide highly-available
-              configuration.</entry>
+              with the Cloud Controller or the UAA. </entry>
           </row>
           <row>
-            <entry>nats<draft-comment author="michaelk">nats</draft-comment></entry>
+            <entry>nats</entry>
             <entry>The NATS server provides publish-subscribe messaging system for the Cloud
-              Controller, the DEA , HM9000, and other Cloud Foundry components.</entry>
+              Controller, the DEA, HM9000, and other Cloud Foundry components.</entry>
           </row>
           <row>
             <entry>loggregator_trafficcontroller</entry>
             <entry/>
           </row>
           <row>
-            <entry>hm9000<draft-comment author="michaelk">hm9000</draft-comment></entry>
-            <entry>The HM9000 periodically compares expected list of running applications as
+            <entry>hm9000</entry>
+            <entry>HM9000 periodically compares the list of expected running applications as
               specified by the Cloud Controller against a list of actually running applications as
-              reported by the DEAs. It tries to reconcile found differences.</entry>
+              reported by the DEAs. The HM9000 attempts to reconcile any differences between the two
+              lists.</entry>
           </row>
           <row>
-            <entry>ha_proxy<draft-comment author="michaelk">haproxy</draft-comment></entry>
-            <entry>The HAProxy server can be used to terminate SSL in front of the Routers. Each
-              HAProxy instance should point to multiple Routers.</entry>
+            <entry>ha_proxy</entry>
+            <entry>The HAProxy server can terminate SSL in front of routers. <note>Each HAProxy
+                instance should point to multiple routers.</note></entry>
           </row>
           <row>
             <entry>etcd<draft-comment author="michaelk">etcd_metrics_server</draft-comment></entry>
-            <entry>The ETCD Metrics Server is meant to be collocated with the ETCD server to collect
-              and expose runtime statistics for the Collector.</entry>
+            <entry>The ETCD Metrics Server, when collocated with the ETCD server, collects and
+              exposes runtime statistics for the stats collector.</entry>
           </row>
           <row>
             <entry>doppler</entry>
             <entry/>
           </row>
           <row>
-            <entry>consul<draft-comment author="michaelk">consul_agent</draft-comment></entry>
-            <entry/>
+            <entry>consul</entry>
+            <entry>Consul is a tool for discovering and configuring services in an infrastructure.
+              It provides service discovery, health checking, and key/value storage and supports
+              multiple datacenters.</entry>
           </row>
           <row>
             <entry>clock_global<draft-comment author="michaelk"
                 >cloud_controller_clock</draft-comment></entry>
-            <entry>The Cloud Controller clock periodically schedules Cloud Controller clean up tasks
-              for app usage events, audit events, failed jobs, and more. Only single instance of
-              this job is necessary.</entry>
+            <entry>The Cloud Controller clock periodically schedules Cloud Controller clean-up tasks
+              for application usage events, audit events, failed jobs, and so on. <note>Only one
+                clock instance is necessary.</note></entry>
           </row>
           <row>
             <entry>api_worker<draft-comment author="michaelk"
                 >cloud_controller_worker</draft-comment></entry>
-            <entry>Cloud Controller worker processes background tasks submitted via the.</entry>
+            <entry>The Cloud Controller worker processes background tasks.</entry>
           </row>
           <row>
             <entry>api<draft-comment author="michaelk">cloud_controller_ng</draft-comment></entry>
-            <entry>The Cloud Controller provides primary Cloud Foundry API that is by the CF CLI.
-              The Cloud Controller uses a database to keep tables for organizations, spaces, apps,
-              services, service instances, user roles, and more. Typically multiple instances of
-              Cloud Controller are load balanced.</entry>
+            <entry>The Cloud Controller provides the primary Cloud Foundry API to the CF
+              command-line interface (CLI). The Cloud Controller uses a database to keep tables for
+              organizations, spaces, applications, services, service instances, user roles, so on.
+              Typically. multiple instances of Cloud Controller are load balanced.</entry>
           </row>
         </tbody>
       </tgroup>
