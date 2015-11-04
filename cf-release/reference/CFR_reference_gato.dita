@@ -157,6 +157,9 @@
             </dl></dd>
         </dlentry>
       </dl>
+      <draft-comment author="michaelk">To find descriptions, go here
+        https://github.com/cloudfoundry/cf-release/tree/v217/jobs and drill down to
+        &lt;component>/spec</draft-comment>
     </section>
     <section id="available_role_containers">
       <title>Available <varname>&lt;role></varname>
@@ -169,12 +172,12 @@
         <thead>
           <row>
             <entry><varname>&lt;role></varname> Container</entry>
-            <entry>Cloud Foundry v217 Description</entry>
+            <entry>Description</entry>
           </row>
         </thead>
         <tbody>
           <row>
-            <entry>uaa</entry>
+            <entry>uaa<draft-comment author="michaelk">uaa</draft-comment></entry>
             <entry>The UAA is the identity management service for Cloud Foundry. It's primary role
               is as an OAuth2 provider, issuing tokens for client applications to use when they act
               on behalf of Cloud Foundry users. It can also authenticate users with their Cloud
@@ -183,25 +186,32 @@
               clients, as well as various other management functions.</entry>
           </row>
           <row>
-            <entry>stats</entry>
-            <entry/>
+            <entry>stats<draft-comment author="michaelk">collector</draft-comment></entry>
+            <entry>The collector will discover the various components on the message bus and query
+              their `/healthz` and `/varz` interfaces. The metric data collected is published to
+              collector plugins such as OpenTSDB, AWS CloudWatch and DataDog.</entry>
           </row>
           <row>
-            <entry>runner</entry>
-            <entry/>
+            <entry>runner<draft-comment author="michaelk">dea_next</draft-comment></entry>
+            <entry>The DEA is responsible for running customer applications and maintaining
+              associated routes as live. It also periodically advertises its capacity to the Cloud
+              Controllers and accepts requests to start and stop applications.</entry>
           </row>
           <row>
-            <entry>router</entry>
-            <entry/>
+            <entry>router<draft-comment author="michaelk">gorouter</draft-comment></entry>
+            <entry>The Router maintains a list of live routes for the applications running on each
+              DEA. The Router load balances requests (based on their Host header) between each
+              application instance registered for a specific route. It requires to be behind a load
+              balancer that can terminate SSL connections.</entry>
           </row>
           <row>
-            <entry>postgres</entry>
+            <entry>postgres<draft-comment author="michaelk">postgres</draft-comment></entry>
             <entry>The Postgres server provides a single instance Postgres database that can be used
               with the Cloud Controller or the UAA. It does not provide highly-available
               configuration.</entry>
           </row>
           <row>
-            <entry>nats</entry>
+            <entry>nats<draft-comment author="michaelk">nats</draft-comment></entry>
             <entry>The NATS server provides publish-subscribe messaging system for the Cloud
               Controller, the DEA , HM9000, and other Cloud Foundry components.</entry>
           </row>
@@ -210,18 +220,18 @@
             <entry/>
           </row>
           <row>
-            <entry>hm9000</entry>
+            <entry>hm9000<draft-comment author="michaelk">hm9000</draft-comment></entry>
             <entry>The HM9000 periodically compares expected list of running applications as
               specified by the Cloud Controller against a list of actually running applications as
               reported by the DEAs. It tries to reconcile found differences.</entry>
           </row>
           <row>
-            <entry>ha_proxy</entry>
+            <entry>ha_proxy<draft-comment author="michaelk">haproxy</draft-comment></entry>
             <entry>The HAProxy server can be used to terminate SSL in front of the Routers. Each
               HAProxy instance should point to multiple Routers.</entry>
           </row>
           <row>
-            <entry>etcd</entry>
+            <entry>etcd<draft-comment author="michaelk">etcd_metrics_server</draft-comment></entry>
             <entry>The ETCD Metrics Server is meant to be collocated with the ETCD server to collect
               and expose runtime statistics for the Collector.</entry>
           </row>
@@ -230,22 +240,27 @@
             <entry/>
           </row>
           <row>
-            <entry>consul</entry>
+            <entry>consul<draft-comment author="michaelk">consul_agent</draft-comment></entry>
             <entry/>
           </row>
           <row>
-            <entry>clock_global</entry>
+            <entry>clock_global<draft-comment author="michaelk"
+                >cloud_controller_clock</draft-comment></entry>
             <entry>The Cloud Controller clock periodically schedules Cloud Controller clean up tasks
               for app usage events, audit events, failed jobs, and more. Only single instance of
               this job is necessary.</entry>
           </row>
           <row>
-            <entry>api_worker</entry>
-            <entry/>
+            <entry>api_worker<draft-comment author="michaelk"
+                >cloud_controller_worker</draft-comment></entry>
+            <entry>Cloud Controller worker processes background tasks submitted via the.</entry>
           </row>
           <row>
-            <entry>api</entry>
-            <entry/>
+            <entry>api<draft-comment author="michaelk">cloud_controller_ng</draft-comment></entry>
+            <entry>The Cloud Controller provides primary Cloud Foundry API that is by the CF CLI.
+              The Cloud Controller uses a database to keep tables for organizations, spaces, apps,
+              services, service instances, user roles, and more. Typically multiple instances of
+              Cloud Controller are load balanced.</entry>
           </row>
         </tbody>
       </tgroup>
