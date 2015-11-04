@@ -32,8 +32,9 @@
       <dl>
         <dlentry>
           <dt><filepath>api</filepath></dt>
-          <dd>Set a <keyword keyref="prodShort"/> config store, for
-            example:<codeblock>$ gato api http://hcf-consul-server.hcf:8501</codeblock></dd>
+          <dd>Set <keyword keyref="adminUtilCLI"/> to use the specified <keyword keyref="prodShort"
+            /> config store for subsequent operations. For
+            example:<codeblock>$ <keyword keyref="adminUtilCLI"/> api http://hcf-consul-server.hcf:8501</codeblock></dd>
         </dlentry>
         <dlentry>
           <dt><filepath>config</filepath></dt>
@@ -53,7 +54,7 @@
           <dt><filepath>role</filepath></dt>
           <dd>Manage node roles. By default, uses the <codeph>$DOCKER_HOST</codeph> environment
             variable to determine the docker server endpoint. Use the <filepath>--node</filepath>
-            flag to stop <varname>&lt;role></varname> container on a specific node.<ul
+            flag to stop a <varname>&lt;role></varname> container on a specific node.<ul
               id="ul_blk_nhj_rt">
               <li><xref href="#reference_cd3_bs3_rt/role_start" format="dita"><filepath>role
                     start</filepath></xref></li>
@@ -71,7 +72,7 @@
               <dlentry>
                 <dt><filepath>--all</filepath>, <filepath>-a</filepath></dt>
                 <dd>Show each individual process, for
-                  example:<codeblock>$ gato status --all</codeblock></dd>
+                  example:<codeblock>$ <keyword keyref="adminUtilCLI"/> status --all</codeblock></dd>
               </dlentry>
             </dl></dd>
         </dlentry>
@@ -84,14 +85,16 @@
           <dt><filepath><keyword keyref="adminUtilCLI"/> config get <varname>[command
                 options]</varname>
               <varname>[arguments...]</varname></filepath></dt>
-          <dd>Look up the current and default values of a configuration.<dl>
+          <dd>Look up the current and default values of a configuration, for example: <codeblock>$ <keyword keyref="adminUtilCLI"/> config get nats/user</codeblock><codeblock>$ <keyword keyref="adminUtilCLI"/> config get nats/password</codeblock><codeblock>$ <keyword keyref="adminUtilCLI"/> config get nats/machines</codeblock><dl>
               <dlentry>
                 <dt><filepath>--quiet</filepath>, <filepath>-q</filepath></dt>
                 <dd>Output only the config values.</dd>
               </dlentry>
               <dlentry>
                 <dt><filepath>--role</filepath>, <filepath>-r</filepath></dt>
-                <dd>Get a specific role's config variable.</dd>
+                <dd>Get <xref href="#reference_cd3_bs3_rt/available_role_containers" format="dita">a
+                    specific role's</xref> config variable, for example:
+                  <codeblock>$ <keyword keyref="adminUtilCLI"/> config get --role uaa uaa/jwt/signing_key</codeblock><codeblock>$ <keyword keyref="adminUtilCLI"/> config get --role hm9000 hm9000/url</codeblock></dd>
               </dlentry>
             </dl></dd>
         </dlentry>
@@ -102,7 +105,8 @@
           <dd>Set the current value of a configuration.<dl>
               <dlentry>
                 <dt><filepath>--role</filepath>, <filepath>-r</filepath></dt>
-                <dd>Set a specific role's configuration.</dd>
+                <dd>Set <xref href="#reference_cd3_bs3_rt/available_role_containers" format="dita">a
+                    specific role's</xref> configuration.</dd>
               </dlentry>
               <dlentry>
                 <dt><filepath>--file</filepath>, <filepath>-f</filepath></dt>
@@ -116,10 +120,11 @@
           <dt><filepath><keyword keyref="adminUtilCLI"/> role start <varname>[command
                 options]</varname>
               <varname>[arguments...]</varname></filepath></dt>
-          <dd>Start the <varname>&lt;role></varname> container.<dl>
+          <dd>Start the <xref href="#reference_cd3_bs3_rt/available_role_containers" format="dita"
+                ><varname>&lt;role></varname> container</xref>.<dl>
               <dlentry>
                 <dt><filepath>--node</filepath>, <filepath>-n</filepath></dt>
-                <dd>Set  the Docker server endpoint. Schemes and port number are required. Supported
+                <dd>Set the Docker server endpoint. Schemes and port number are required. Supported
                   schemes: <codeph>tcp://</codeph>
                   <codeph>unix://</codeph>
                   <codeph>http://</codeph>
@@ -134,24 +139,8 @@
           <dt><filepath><keyword keyref="adminUtilCLI"/> role restart <varname>[command
                 options]</varname>
               <varname>[arguments...]</varname></filepath></dt>
-          <dd>Stop or restart the <varname>&lt;role></varname> container. The available
-              <varname>&lt;role></varname> containers are: <ul id="ul_y3t_nrz_5t">
-              <li>uaa</li>
-              <li>stats</li>
-              <li>runner</li>
-              <li>router</li>
-              <li>postgres</li>
-              <li>nats</li>
-              <li>loggregator_trafficcontroller</li>
-              <li>hm9000</li>
-              <li>ha_proxy</li>
-              <li>etcd</li>
-              <li>doppler</li>
-              <li>consul</li>
-              <li>clock_global</li>
-              <li>api_worker</li>
-              <li>api</li>
-            </ul><dl>
+          <dd>Stop or restart the <xref href="#reference_cd3_bs3_rt/available_role_containers"
+              format="dita"><varname>&lt;role></varname> container</xref>.<dl>
               <dlentry>
                 <dt><filepath>--node</filepath>, <filepath>-n</filepath></dt>
                 <dd>Set the Docker server endpoint. Schemes and port number are required. Supported
@@ -168,5 +157,97 @@
         </dlentry>
       </dl>
     </section>
+    <section>
+      <title id="available_role_containers">Available <varname>&lt;role></varname>
+        Containers</title>
+    </section>
+    <table frame="all" rowsep="1" colsep="1" id="table_cls_wfz_wt">
+      <tgroup cols="2">
+        <colspec colname="c1" colnum="1" colwidth="1.0*"/>
+        <colspec colname="c2" colnum="2" colwidth="1.0*"/>
+        <thead>
+          <row>
+            <entry><varname>&lt;role></varname> Container</entry>
+            <entry>Cloud Foundry v217 Description</entry>
+          </row>
+        </thead>
+        <tbody>
+          <row>
+            <entry>uaa</entry>
+            <entry>The UAA is the identity management service for Cloud Foundry. It's primary role
+              is as an OAuth2 provider, issuing tokens for client applications to use when they act
+              on behalf of Cloud Foundry users. It can also authenticate users with their Cloud
+              Foundry credentials, and can act as an SSO service using those credentials (or
+              others). It has endpoints for managing user accounts and for registering OAuth2
+              clients, as well as various other management functions.</entry>
+          </row>
+          <row>
+            <entry>stats</entry>
+            <entry/>
+          </row>
+          <row>
+            <entry>runner</entry>
+            <entry/>
+          </row>
+          <row>
+            <entry>router</entry>
+            <entry/>
+          </row>
+          <row>
+            <entry>postgres</entry>
+            <entry>The Postgres server provides a single instance Postgres database that can be used
+              with the Cloud Controller or the UAA. It does not provide highly-available
+              configuration.</entry>
+          </row>
+          <row>
+            <entry>nats</entry>
+            <entry>The NATS server provides publish-subscribe messaging system for the Cloud
+              Controller, the DEA , HM9000, and other Cloud Foundry components.</entry>
+          </row>
+          <row>
+            <entry>loggregator_trafficcontroller</entry>
+            <entry/>
+          </row>
+          <row>
+            <entry>hm9000</entry>
+            <entry>The HM9000 periodically compares expected list of running applications as
+              specified by the Cloud Controller against a list of actually running applications as
+              reported by the DEAs. It tries to reconcile found differences.</entry>
+          </row>
+          <row>
+            <entry>ha_proxy</entry>
+            <entry>The HAProxy server can be used to terminate SSL in front of the Routers. Each
+              HAProxy instance should point to multiple Routers.</entry>
+          </row>
+          <row>
+            <entry>etcd</entry>
+            <entry>The ETCD Metrics Server is meant to be collocated with the ETCD server to collect
+              and expose runtime statistics for the Collector.</entry>
+          </row>
+          <row>
+            <entry>doppler</entry>
+            <entry/>
+          </row>
+          <row>
+            <entry>consul</entry>
+            <entry/>
+          </row>
+          <row>
+            <entry>clock_global</entry>
+            <entry>The Cloud Controller clock periodically schedules Cloud Controller clean up tasks
+              for app usage events, audit events, failed jobs, and more. Only single instance of
+              this job is necessary.</entry>
+          </row>
+          <row>
+            <entry>api_worker</entry>
+            <entry/>
+          </row>
+          <row>
+            <entry>api</entry>
+            <entry/>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
   </refbody>
 </reference>
